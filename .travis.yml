@@ -11,9 +11,7 @@ after_success:
   - 'git commit -m "commit build artifacts"'
   - 'git status'
   - 'git remote add origin2 https://cmosher01:$GITHUB_TOKEN@github.com/cmosher01/Solarized-Study.git'
-  - 'git push origin2 master'
-  - 'ls -al ~/'
-  - 'ls -al ~/.ssh'
+#git push origin2 master
 deploy:
     provider: bintray
     file: build/bintray.json
