@@ -8,8 +8,10 @@ after_success:
   - 'git remote -v show'
   - 'git checkout master'
   - 'git add docs'
+  - 'git commit -m "commit build artifacts"'
   - 'git status'
-  - 'git push'
+  - 'git remote add origin2 https://cmosher01:$GITHUB_TOKEN@github.com/cmosher01/Solarized-Study.git'
+  - 'git push origin2 master'
   - 'ls -al ~/'
   - 'ls -al ~/.ssh'
 deploy:
