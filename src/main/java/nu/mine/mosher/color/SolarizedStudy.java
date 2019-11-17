@@ -21,6 +21,7 @@ package nu.mine.mosher.color;
 import Jama.Matrix;
 
 import java.io.*;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 
 import static nu.mine.mosher.color.SolarizedLab.*;
@@ -36,6 +37,7 @@ public class SolarizedStudy {
             "<!doctype html>\n" +
             "<html>\n" +
             "<head>\n" +
+            "<!-- generated "+ ZonedDateTime.now() +" -->\n" +
             "<link href=\"style.css\" rel=\"stylesheet\">" +
             "</head>\n" +
             "<body>\n" +

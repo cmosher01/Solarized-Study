@@ -4,6 +4,7 @@ jdk: openjdk8
 after_success:
   - './gradlew run --args=docs/index.html'
   - 'cat docs/index.html'
+  - 'ls -l docs'
 deploy:
     provider: bintray
     file: build/bintray.json
