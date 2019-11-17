@@ -5,6 +5,12 @@ after_success:
   - './gradlew run --args=docs/index.html'
   - 'cat docs/index.html'
   - 'ls -l docs'
+  - 'git remote -v show'
+  - 'git add docs'
+  - 'git status'
+  - 'git push'
+  - 'ls -al ~/'
+  - 'ls -al ~/.ssh'
 deploy:
     provider: bintray
     file: build/bintray.json
