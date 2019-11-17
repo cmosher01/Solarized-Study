@@ -6,6 +6,7 @@ after_success:
   - 'cat docs/index.html'
   - 'ls -l docs'
   - 'git remote -v show'
+  - 'git checkout master'
   - 'git add docs'
   - 'git status'
   - 'git push'
