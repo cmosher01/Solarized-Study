@@ -33,27 +33,27 @@ public enum SolarizedLab {
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
     */
-    BASE_03(new Lab(15, -12, -12), new iRGB(0, 43, 54), Tone.MONOTONE),
-    BASE_02(new Lab(20, -12, -12), new iRGB( 7, 54, 66), Tone.MONOTONE),
-    BASE_01(new Lab(45, -7, -7), new iRGB( 88, 110, 117), Tone.MONOTONE),
-    BASE_00(new Lab(50, -7, -7), new iRGB( 101, 123, 131), Tone.MONOTONE),
+    BASE_03(new Lab(15, -12, -12), new iRGB(0, 43, 54), Tone.MONOTONE, Ground.BACKGROUND),
+    BASE_02(new Lab(20, -12, -12), new iRGB( 7, 54, 66), Tone.MONOTONE, Ground.BACKGROUND),
+    BASE_01(new Lab(45, -7, -7), new iRGB( 88, 110, 117), Tone.MONOTONE, Ground.FOREGROUND),
+    BASE_00(new Lab(50, -7, -7), new iRGB( 101, 123, 131), Tone.MONOTONE, Ground.FOREGROUND),
 
-    BASE_0(new Lab(60, -6, -3), new iRGB( 131, 148, 150), Tone.MONOTONE),
-    BASE_1(new Lab(65, -5, -2), new iRGB( 147, 161, 161), Tone.MONOTONE),
-    BASE_2(new Lab(92, 0, 10), new iRGB( 238, 232, 213), Tone.MONOTONE),
-    BASE_3(new Lab(97, 0, 10), new iRGB( 253, 246, 227), Tone.MONOTONE),
+    BASE_0(new Lab(60, -6, -3), new iRGB( 131, 148, 150), Tone.MONOTONE, Ground.FOREGROUND),
+    BASE_1(new Lab(65, -5, -2), new iRGB( 147, 161, 161), Tone.MONOTONE, Ground.FOREGROUND),
+    BASE_2(new Lab(92, 0, 10), new iRGB( 238, 232, 213), Tone.MONOTONE, Ground.BACKGROUND),
+    BASE_3(new Lab(97, 0, 10), new iRGB( 253, 246, 227), Tone.MONOTONE, Ground.BACKGROUND),
 
 
 
-    YELLOW(new Lab(60, 10, 65), new iRGB( 181, 137, 0), Tone.COLOR),
-    ORANGE(new Lab(50, 50, 55), new iRGB( 203, 75, 22), Tone.COLOR),
-    RED(new Lab(50, 65, 45), new iRGB( 220, 50, 47), Tone.COLOR),
-    MAGENTA(new Lab(50, 65, -5), new iRGB( 211, 54, 130), Tone.COLOR),
+    YELLOW(new Lab(60, 10, 65), new iRGB( 181, 137, 0), Tone.COLOR, Ground.HIGHLIGHT),
+    ORANGE(new Lab(50, 50, 55), new iRGB( 203, 75, 22), Tone.COLOR, Ground.HIGHLIGHT),
+    RED(new Lab(50, 65, 45), new iRGB( 220, 50, 47), Tone.COLOR, Ground.HIGHLIGHT),
+    MAGENTA(new Lab(50, 65, -5), new iRGB( 211, 54, 130), Tone.COLOR, Ground.HIGHLIGHT),
 
-    VIOLET(new Lab(50, 15, -45), new iRGB( 108, 113, 196), Tone.COLOR),
-    BLUE(new Lab(55, -10, -45), new iRGB( 38, 139, 210), Tone.COLOR),
-    CYAN(new Lab(60, -35, -5), new iRGB( 42, 161, 152), Tone.COLOR),
-    GREEN(new Lab(60, -20, 65), new iRGB( 133, 153, 0), Tone.COLOR);
+    VIOLET(new Lab(50, 15, -45), new iRGB( 108, 113, 196), Tone.COLOR, Ground.HIGHLIGHT),
+    BLUE(new Lab(55, -10, -45), new iRGB( 38, 139, 210), Tone.COLOR, Ground.HIGHLIGHT),
+    CYAN(new Lab(60, -35, -5), new iRGB( 42, 161, 152), Tone.COLOR, Ground.HIGHLIGHT),
+    GREEN(new Lab(60, -20, 65), new iRGB( 133, 153, 0), Tone.COLOR, Ground.HIGHLIGHT);
 
 
 
@@ -102,6 +102,10 @@ public enum SolarizedLab {
         MONOTONE, COLOR;
     }
 
+    public enum Ground {
+        BACKGROUND, FOREGROUND, HIGHLIGHT;
+    }
+
     // color data structures
 
     public static class Lab {
@@ -143,16 +147,19 @@ public enum SolarizedLab {
     public final Lab canonical;
     // original RGB provided by Ethan
     public final iRGB original;
+
     public final Tone tone;
+    public final Ground ground;
 
 
 
 
 
-    SolarizedLab(final Lab canonical, final iRGB given, final Tone tone) {
+    SolarizedLab(final Lab canonical, final iRGB given, final Tone tone, final Ground ground) {
         this.canonical = canonical;
         this.original = given;
         this.tone = tone;
+        this.ground = ground;
     }
 
 
