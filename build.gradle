@@ -1,0 +1,22 @@
+apply plugin: 'application'
+
+group = 'nu.mine.mosher.color'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+}
+
+application {
+    mainClassName = 'nu.mine.mosher.color.SolarizedStudy'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'gov.nist.math', name: 'jama', version: 'latest.integration'
+}
+
+version="1.0.0"
