@@ -20,11 +20,7 @@ package nu.mine.mosher.color;
 
 import Jama.Matrix;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.Arrays;
 
 import static nu.mine.mosher.color.SolarizedLab.*;
@@ -40,80 +36,22 @@ public class SolarizedStudy {
             "<!doctype html>\n" +
             "<html>\n" +
             "<head>\n" +
-            "");
-
-        System.out.println("" +
-            "<style>\n" +
-            "h1 {\n" +
-            "    padding: 30px;\n" +
-            "    margin: 0;\n" +
-            "}\n" +
-            ".container {\n" +
-            "    display: grid;\n" +
-            "    grid-template-rows: repeat(2, 200px);\n" +
-            "    grid-template-columns: repeat(8, 1fr);\n" +
-            "    grid-column-gap: 5px;\n" +
-            "}\n" +
-            ".container > div {\n" +
-            "    border-radius: 8px;\n" +
-            "}\n" +
-            ".text {\n" +
-            "    display: grid;\n" +
-            "    grid-template-columns: repeat(4, 1fr);\n" +
-            "}\n" +
-            ".text > div {\n" +
-            "    display: flex;\n" +
-            "    align-items: center;\n" +
-            "    padding: 1em;\n" +
-            "}\n" +
-            ".wheel {\n" +
-            "    height: 270px;\n" +
-            "    position: relative;\n" +
-            "}\n" +
-            ".wheel {\n" +
-            "    height: 270px;\n" +
-            "    position: relative;\n" +
-            "}\n" +
-            ".wheel > div {\n" +
-            "    position: absolute;\n" +
-            "    top: 50%;\n" +
-            "    left: 50%;\n" +
-            "    width: 65px;\n" +
-            "    height: 100px;\n" +
-            "    border-radius: 50%;\n" +
-            "}\n" +
-            ".wheel > div:nth-child(6) {\n" + "    transform: translateY(100px);\n" + "}\n" +
-            ".wheel > div:nth-child(5) {\n" + "    transform: rotate(45deg) translateY(100px);\n" + "}\n" +
-            ".wheel > div:nth-child(4) {\n" + "    transform: rotate(90deg) translateY(100px);\n" + "}\n" +
-            ".wheel > div:nth-child(3) {\n" + "    transform: rotate(135deg) translateY(100px);\n" + "}\n" +
-            ".wheel > div:nth-child(2) {\n" + "    transform: rotate(180deg) translateY(100px);\n" + "}\n" +
-            ".wheel > div:nth-child(1) {\n" + "    transform: rotate(-135deg) translateY(100px);\n" + "}\n" +
-            ".wheel > div:nth-child(8) {\n" + "    transform: rotate(-90deg) translateY(100px);\n" + "}\n" +
-            ".wheel > div:nth-child(7) {\n" + "    transform: rotate(-45deg) translateY(100px);\n" + "}\n" +
-            "body {\n" +
-            "    font-family: 'EB Garamond', serif;\n" +
-            "}\n" +
-            "pre {\n" +
-            "    font-family: 'Source Code Pro', monospace;\n" +
-            "}\n" +
-            "</style>\n" +
-            "<link href=\"https://fonts.googleapis.com/css?family=EB+Garamond|Source+Code+Pro&display=swap\" rel=\"stylesheet\">" +
-            "");
-        System.out.println("" +
-            "");
-
-
-
-        System.out.println("" +
+            "<link href=\"style.css\" rel=\"stylesheet\">" +
             "</head>\n" +
             "<body>\n" +
             "");
 
-        System.out.println(div(BASE_3.toIrgb(D65_2D), "", BASE_00.toIrgb(D65_2D)));
+
+
+
+
+        // color wheel header
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D)));
+
         System.out.println("" +
             "<div class=\"wheel\">\n" +
             "");
-        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.COLOR).forEach(lab -> System.out.println(div(lab.toIrgb(D65_2D), "")));
+        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.COLOR).forEach(lab -> System.out.println(div(lab.toIrgb(D65_2D))));
         System.out.println("" +
             "</div>" +
             "");
@@ -121,14 +59,14 @@ public class SolarizedStudy {
             "</div>" +
             "");
 
-
-        System.out.println(div(BASE_3.toIrgb(D65_2D), "", BASE_00.toIrgb(D65_2D)));
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D)));
         System.out.println("" +
             "<h1>Solarized</h1>\n" +
             "<div style=\"width:100%; text-align:right; padding-bottom:30px;\">" +
             "see <a href=\"https://ethanschoonover.com/solarized/\">https://ethanschoonover.com/solarized</a>&nbsp;&nbsp;" +
             "</div>" +
             "");
+
         System.out.println("" +
             "</div>" +
             "");
@@ -137,50 +75,18 @@ public class SolarizedStudy {
 
 
 
-
-        System.out.println("" +
-            "<h2>monotones</h2>\n" +
-            "");
-
-        System.out.println(div(BASE_3.toIrgb(D65_2D), "", BASE_00.toIrgb(D65_2D)));
-        System.out.println("<pre>");
-        System.out.println("XYZ and sRGB conversions (from L*a*b* with reference white-point of D65 @ 2 degrees)");
-        System.out.println();
-        System.out.println("SOLARIZED  L*   a*   b*  >     X       Y       Z    >     R        G        B     >  #RRGGBB  given");
-        System.out.println("---------  ------------     ----------------------     -------------------------     ------- -------");
-        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.MONOTONE).forEach(lab -> show(lab, D65_2D));
-        System.out.println("" +
-            "</pre>\n" +
-            "</div>\n" +
-            "");
-
-        System.out.println("The top row shows RGB values given on the Solarized web page.");
-        System.out.println("The bottom row, for comparison, shows RGB values calculated dynamically from the canonical L*a*b* values.");
-
-        System.out.println("" +
-            "<div class=\"container\">\n" +
-            "");
-        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.MONOTONE).forEach(lab -> System.out.println(div(lab.original, "")));
-        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.MONOTONE).forEach(lab -> System.out.println(div(lab.toIrgb(D65_2D), "")));
-        System.out.println("" +
-            "</div>" +
-            "");
-
-
-
-
-
+        // colors
         System.out.println("" +
             "<h2>colors</h2>\n" +
             "");
 
-        System.out.println(div(BASE_3.toIrgb(D65_2D), "", BASE_00.toIrgb(D65_2D)));
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D)));
         System.out.println("<pre>");
         System.out.println("XYZ and sRGB conversions (from L*a*b* with reference white-point of D65 @ 2 degrees)");
         System.out.println();
         System.out.println("SOLARIZED  L*   a*   b*  >     X       Y       Z    >     R        G        B     >  #RRGGBB  given");
         System.out.println("---------  ------------     ----------------------     -------------------------     ------- -------");
-        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.COLOR).forEach(lab -> show(lab, D65_2D));
+        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.COLOR).forEach(lab -> printColorComponentTableRow(lab, D65_2D));
         System.out.println("" +
             "</pre>\n" +
             "</div>\n" +
@@ -190,17 +96,54 @@ public class SolarizedStudy {
         System.out.println("" +
             "<div class=\"container\">\n" +
             "");
-        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.COLOR).forEach(lab -> System.out.println(div(lab.original, "")));
-        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.COLOR).forEach(lab -> System.out.println(div(lab.toIrgb(D65_2D), "")));
+        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.COLOR).forEach(lab -> System.out.println(div(lab.original)));
+        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.COLOR).forEach(lab -> System.out.println(div(lab.toIrgb(D65_2D))));
         System.out.println("" +
             "</div>" +
             "");
 
 
+
+
+
+        // monotones
+        System.out.println("" +
+            "<h2>monotones</h2>\n" +
+            "");
+
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D)));
+        System.out.println("<pre>");
+        System.out.println("XYZ and sRGB conversions (from L*a*b* with reference white-point of D65 @ 2 degrees)");
+        System.out.println();
+        System.out.println("SOLARIZED  L*   a*   b*  >     X       Y       Z    >     R        G        B     >  #RRGGBB  given");
+        System.out.println("---------  ------------     ----------------------     -------------------------     ------- -------");
+        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.MONOTONE).forEach(lab -> printColorComponentTableRow(lab, D65_2D));
+        System.out.println("" +
+            "</pre>\n" +
+            "</div>\n" +
+            "");
+
+        System.out.println("The top row shows RGB values given on the Solarized web page.");
+        System.out.println("The bottom row, for comparison, shows RGB values calculated dynamically from the canonical L*a*b* values.");
+
+        System.out.println("" +
+            "<div class=\"container\">\n" +
+            "");
+        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.MONOTONE).forEach(lab -> System.out.println(div(lab.original)));
+        Arrays.stream(SolarizedLab.values()).filter(lab -> lab.tone == Tone.MONOTONE).forEach(lab -> System.out.println(div(lab.toIrgb(D65_2D))));
+        System.out.println("" +
+            "</div>" +
+            "");
+
+
+
+
+
+        // text
         System.out.println("" +
             "<h2>monotone combinations</h2>\n" +
             "");
-        System.out.println(div(BASE_3.toIrgb(D65_2D), "", BASE_00.toIrgb(D65_2D)));
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D)));
         System.out.println("<pre>");
         System.out.println("Monotone lightness deltas, (Lbg-Lfg)/5   (every combination)");
         System.out.print("   BASE_3  BASE_2  BASE_1  BASE_0  BASE_00 BASE_01 BASE_02 BASE_03");
@@ -231,35 +174,41 @@ public class SolarizedStudy {
             "þæt híe aér drugon aldorléase\n" +
             "lange hwíle· him þæs líffréä\n" +
             "wuldres wealdend woroldáre forgeaf:\n" +
-            "Béowulf wæs bréme—blaéd wíde sprang—" +
+            "Béowulf wæs bréme—blaéd wíde\nsprang—" +
             "Scyldes eafera Scedelandum in.\n";
-        System.out.println(div(BASE_3.toIrgb(D65_2D), "", BASE_1.toIrgb(D65_2D))+"\nbase1:base3"+msg+"</div>");
-        System.out.println(div(BASE_3.toIrgb(D65_2D), "", BASE_0.toIrgb(D65_2D))+"\nbase0:base3"+msg+"</div>");
-        System.out.println(div(BASE_3.toIrgb(D65_2D), "", BASE_00.toIrgb(D65_2D))+"\nbase00:base3"+msg+"</div>");
-        System.out.println(div(BASE_3.toIrgb(D65_2D), "", BASE_01.toIrgb(D65_2D))+"\nbase01:base3"+msg+"</div>");
 
-        System.out.println(div(BASE_2.toIrgb(D65_2D), "", BASE_1.toIrgb(D65_2D))+"\nbase1:base2"+msg+"</div>");
-        System.out.println(div(BASE_2.toIrgb(D65_2D), "", BASE_0.toIrgb(D65_2D))+"\nbase0:base2"+msg+"</div>");
-        System.out.println(div(BASE_2.toIrgb(D65_2D), "", BASE_00.toIrgb(D65_2D))+"\nbase00:base2"+msg+"</div>");
-        System.out.println(div(BASE_2.toIrgb(D65_2D), "", BASE_01.toIrgb(D65_2D))+"\nbase01:base2"+msg+"</div>");
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase1:base3"+msg+"</div>");
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase0:base3"+msg+"</div>");
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase00:base3"+msg+"</div>");
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase01:base3"+msg+"</div>");
 
-        System.out.println(div(BASE_02.toIrgb(D65_2D), "", BASE_1.toIrgb(D65_2D))+"\nbase1:base02"+msg+"</div>");
-        System.out.println(div(BASE_02.toIrgb(D65_2D), "", BASE_0.toIrgb(D65_2D))+"\nbase0:base02"+msg+"</div>");
-        System.out.println(div(BASE_02.toIrgb(D65_2D), "", BASE_00.toIrgb(D65_2D))+"\nbase00:base02"+msg+"</div>");
-        System.out.println(div(BASE_02.toIrgb(D65_2D), "", BASE_01.toIrgb(D65_2D))+"\nbase01:base02"+msg+"</div>");
+        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase1:base2"+msg+"</div>");
+        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase0:base2"+msg+"</div>");
+        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase00:base2"+msg+"</div>");
+        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase01:base2"+msg+"</div>");
 
-        System.out.println(div(BASE_03.toIrgb(D65_2D), "", BASE_1.toIrgb(D65_2D))+"\nbase1:base03"+msg+"</div>");
-        System.out.println(div(BASE_03.toIrgb(D65_2D), "", BASE_0.toIrgb(D65_2D))+"\nbase0:base03"+msg+"</div>");
-        System.out.println(div(BASE_03.toIrgb(D65_2D), "", BASE_00.toIrgb(D65_2D))+"\nbase00:base03"+msg+"</div>");
-        System.out.println(div(BASE_03.toIrgb(D65_2D), "", BASE_01.toIrgb(D65_2D))+"\nbase01:base03"+msg+"</div>");
+        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase1:base02"+msg+"</div>");
+        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase0:base02"+msg+"</div>");
+        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase00:base02"+msg+"</div>");
+        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase01:base02"+msg+"</div>");
+
+        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase1:base03"+msg+"</div>");
+        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase0:base03"+msg+"</div>");
+        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase00:base03"+msg+"</div>");
+        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase01:base03"+msg+"</div>");
+
         System.out.println("" +
             "</div>" +
             "");
 
 
+
+
+
+        // css
         System.out.println("<p>example CSS usage</p>");
 
-        System.out.println(div(BASE_3.toIrgb(D65_2D), "", BASE_00.toIrgb(D65_2D)));
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D)));
         System.out.println("<pre>");
 
         System.out.println(":root {");
@@ -279,6 +228,8 @@ public class SolarizedStudy {
 
 
 
+
+
         System.out.println("" +
             "</body>\n" +
             "</html>\n" +
@@ -288,21 +239,12 @@ public class SolarizedStudy {
         System.err.flush();
     }
 
-    private static String div(final iRGB bg, final String cls) {
-        return String.format("<div class=\"%s\" style=\"background-color:%s;\"></div>", cls, crgb(bg));
-    }
-
-    private static String div(final iRGB bg, final String cls, final iRGB fg) {
-        return String.format("<div class=\"%s\" style=\"color:%s; background-color:%s;\">", cls, crgb(fg), crgb(bg));
-    }
-
-    private static String crgb(final iRGB c) {
-        return String.format("#%02x%02x%02x", c.R, c.G, c.B);
-    }
 
 
 
-    private static void show(SolarizedLab lab, final Matrix whitepoint) {
+
+
+    private static void printColorComponentTableRow(final SolarizedLab lab, final Matrix whitepoint) {
         System.out.print(String.format("%-9s", lab));
 
         // canonical L*a*b* values
@@ -326,5 +268,17 @@ public class SolarizedStudy {
         System.out.print(String.format("#%02x%02x%02x", lab.original.R, lab.original.G, lab.original.B));
 
         System.out.println();
+    }
+
+    private static String div(final iRGB bg) {
+        return String.format("<div style=\"background-color:%s;\"></div>", crgb(bg));
+    }
+
+    private static String div(final iRGB bg, final iRGB fg) {
+        return String.format("<div style=\"color:%s; background-color:%s;\">", crgb(fg), crgb(bg));
+    }
+
+    private static String crgb(final iRGB c) {
+        return String.format("#%02x%02x%02x", c.R, c.G, c.B);
     }
 }

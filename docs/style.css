@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond|Source+Code+Pro&display=swap')
+
+body {
+    font-family: 'EB Garamond', serif;
+}
+pre {
+    font-family: 'Source Code Pro', monospace;
+}
+h1 {
+    padding: 30px;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.container {
+    display: grid;
+    grid-template-rows: repeat(2, 200px);
+    grid-template-columns: repeat(8, 1fr);
+    grid-column-gap: 8px;
+}
+.container > div {
+    border-radius: 8px;
+}
+.text {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.text > div {
+    display: flex;
+    align-items: center;
+    padding: 1em;
+}
+.wheel {
+    height: 270px;
+    position: relative;
+}
+.wheel > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 65px;
+    height: 100px;
+    border-radius: 50%;
+}
+.wheel > div:nth-child(6) {
+    transform: translateY(100px);
+}
+.wheel > div:nth-child(5) {
+    transform: rotate(45deg) translateY(100px);
+}
+.wheel > div:nth-child(4) {
+    transform: rotate(90deg) translateY(100px);
+}
+.wheel > div:nth-child(3) {
+    transform: rotate(135deg) translateY(100px);
+}
+.wheel > div:nth-child(2) {
+    transform: rotate(180deg) translateY(100px);
+}
+.wheel > div:nth-child(1) {
+    transform: rotate(-135deg) translateY(100px);
+}
+.wheel > div:nth-child(8) {
+    transform: rotate(-90deg) translateY(100px);
+}
+.wheel > div:nth-child(7) {
+    transform: rotate(-45deg) translateY(100px);
+}
