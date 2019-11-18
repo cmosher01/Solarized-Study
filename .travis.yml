@@ -2,6 +2,7 @@
 branches:
   only:
     - features
+    - '/^v\d/'
 language: java
 jdk: openjdk8
 before_script:
