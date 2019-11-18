@@ -1,12 +1,12 @@
 ---
 branches:
   only:
-    - master
+    - features
 language: java
 jdk: openjdk8
 before_script:
-  - 'git checkout -b deployment'
-  - 'git rebase master'
+  - 'git checkout -b master'
+  - 'git rebase features'
 after_success:
   - './gradlew run --args=docs/index.html'
   - 'head docs/index.html'
@@ -14,7 +14,7 @@ after_success:
   - 'git commit -m "commit build artifacts"'
   - 'git status'
   - 'git remote add authd https://cmosher01:$GITHUB_TOKEN@github.com/cmosher01/Solarized-Study.git'
-  - 'git push authd deployment'
+  - 'git push authd master'
 deploy:
     provider: bintray
     file: build/bintray.json
