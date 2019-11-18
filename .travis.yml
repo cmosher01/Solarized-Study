@@ -1,26 +1,27 @@
 ---
-branches:
-  only:
-    - features
-    - '/^v\d/'
 language: java
 jdk: openjdk8
-before_script:
-  - 'git checkout -b master'
-  - 'git rebase features'
-after_success:
-  - './gradlew run --args=docs/index.html'
-  - 'head docs/index.html'
-  - 'git add docs'
-  - 'git commit -m "commit build artifacts"'
-  - 'git status'
-  - 'git remote add authd https://cmosher01:$GITHUB_TOKEN@github.com/cmosher01/Solarized-Study.git'
-  - 'git push authd master'
-deploy:
-    provider: bintray
-    file: build/bintray.json
-    user: $BINTRAY_USERNAME
-    key: $BINTRAY_API_KEY
-    skip_cleanup: true
-    on:
-        tags: true
+
+jobs:
+  include:
+    - if: 'branch = features'
+      before_script:
+        - 'git checkout -b master'
+        - 'git rebase features'
+      after_success:
+        - './gradlew run --args=docs/index.html'
+        - 'head docs/index.html'
+        - 'git add docs'
+        - 'git commit -m "commit build artifacts"'
+        - 'git status'
+        - 'git remote add authd https://cmosher01:$GITHUB_TOKEN@github.com/cmosher01/Solarized-Study.git'
+        - 'git push authd master'
+    - if: 'tag =~ /^v\d/'
+      deploy:
+          provider: bintray
+          file: build/bintray.json
+          user: $BINTRAY_USERNAME
+          key: $BINTRAY_API_KEY
+          skip_cleanup: true
+          on:
+              tags: true
