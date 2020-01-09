@@ -179,25 +179,25 @@ public class SolarizedStudy {
             "Béowulf wæs bréme—blaéd wíde\nsprang—" +
             "Scyldes eafera Scedelandum in.\n";
 
-        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase1:base3"+msg+"</div>");
-        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase0:base3"+msg+"</div>");
-        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase00:base3"+msg+"</div>");
-        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase01:base3"+msg+"</div>");
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase3:base1"+msg+"</div>");
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase3:base0"+msg+"</div>");
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase3:base00"+msg+"</div>");
+        System.out.println(div(BASE_3.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase3:base01"+msg+"</div>");
 
-        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase1:base2"+msg+"</div>");
-        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase0:base2"+msg+"</div>");
-        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase00:base2"+msg+"</div>");
-        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase01:base2"+msg+"</div>");
+        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase2:base1"+msg+"</div>");
+        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase2:base0"+msg+"</div>");
+        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase2:base00"+msg+"</div>");
+        System.out.println(div(BASE_2.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase2:base01"+msg+"</div>");
 
-        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase1:base02"+msg+"</div>");
-        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase0:base02"+msg+"</div>");
-        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase00:base02"+msg+"</div>");
-        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase01:base02"+msg+"</div>");
+        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase02:base1"+msg+"</div>");
+        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase02:base0"+msg+"</div>");
+        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase02:base00"+msg+"</div>");
+        System.out.println(div(BASE_02.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase02:base01"+msg+"</div>");
 
-        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase1:base03"+msg+"</div>");
-        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase0:base03"+msg+"</div>");
-        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase00:base03"+msg+"</div>");
-        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase01:base03"+msg+"</div>");
+        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_1.toIrgb(D65_2D))+"\nbase03:base1"+msg+"</div>");
+        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_0.toIrgb(D65_2D))+"\nbase03:base0"+msg+"</div>");
+        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_00.toIrgb(D65_2D))+"\nbase03:base00"+msg+"</div>");
+        System.out.println(div(BASE_03.toIrgb(D65_2D), BASE_01.toIrgb(D65_2D))+"\nbase03:base01"+msg+"</div>");
 
         System.out.println("" +
             "</div>" +
