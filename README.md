@@ -1,6 +1,6 @@
 # Solarized Study
 
-Copyright © 2019, Christopher Alan Mosher, Shelton, Connecticut, USA, <cmosher01@gmail.com>.
+Copyright © 2019, 2022, Christopher Alan Mosher, Shelton, Connecticut, USA, <cmosher01@gmail.com>.
 
 [![Website](https://img.shields.io/website/https/cmosher01.github.io/Solarized-Study.svg)](https://cmosher01.github.io/Solarized-Study)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CVSSQ2BWDCKQ2)

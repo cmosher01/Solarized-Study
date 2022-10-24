@@ -1,6 +1,0 @@
-task sourcesJar(type: Jar) {
-    from sourceSets.main.allJava
-    archiveClassifier.set 'sources'
-}
-
-tasks.assemble.dependsOn tasks.sourcesJar

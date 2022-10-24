@@ -1,8 +1,0 @@
-repositories {
-    jcenter()
-    mavenCentral()
-}
-
-dependencies {
-    implementation group: 'gov.nist.math', name: 'jama', version: 'latest.integration'
-}

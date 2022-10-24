@@ -1,10 +1,81 @@
-def inc(module) {
-    apply from: "${projectDir}/gradle/${module}.gradle"
+plugins {
+    id 'application'
+    id 'java-library'
+    id 'maven-publish'
 }
 
-inc('version')
-inc('project')
-inc('dependencies')
-inc('srcjar')
-inc('maven')
-inc('bintray')
+version = '1.1.0'
+
+group = 'nu.mine.mosher.color'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'gov.nist.math', name: 'jama', version: 'latest.integration'
+}
+
+application {
+    mainClass = 'nu.mine.mosher.color.SolarizedStudy'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of 11
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier.set 'sources'
+}
+
+tasks.assemble.dependsOn tasks.sourcesJar
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom {
+                name = 'Solarized-Study'
+                description = 'A study of Ethan Schoonover\'s "Solarized" color values'
+                url = 'https://github.com/cmosher01/Solarized-Study'
+                inceptionYear = '2019'
+                packaging = 'jar'
+                licenses {
+                    license {
+                        name = 'GNU General Public License v3.0'
+                        url = 'https://www.gnu.org/licenses/gpl-3.0.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'cmosher01'
+                        name = 'Christopher Alan Mosher'
+                        email = 'cmosher01@gmail.com'
+                        url = 'https://mosher.mine.nu'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/cmosher01/Solarized-Study.git'
+                    developerConnection = 'scm:git:ssh://github.com/cmosher01/Solarized-Study.git'
+                    url = 'http://github.com/cmosher01/Solarized-Study'
+                }
+            }
+        }
+    }
+}
+tasks.assemble.dependsOn tasks.generatePomFileForMavenPublication
+
+publishing {
+    repositories {
+        maven {
+            url 'https://maven.pkg.github.com/cmosher01/Solarized-Study'
+            credentials {
+                username = System.getenv('GITHUB_ACTOR') ?: 'restricted'
+                password = System.getenv('GITHUB_TOKEN') ?: 'restricted'
+            }
+        }
+    }
+}
